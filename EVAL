@@ -1,0 +1,62 @@
+Script started on Sat 07 May 2016 06:43:19 PM EDT
+/home/easiruwa/111/huffman
+Files copied to sandbox
+Copying harness directory
+Test harness copied to sandbox
+
+echo "NOTICE:  We are ONLY testing whether your program compiles"
+NOTICE:  We are ONLY testing whether your program compiles
+echo "and runs.  More exhaustive testing will be done by hand."
+and runs.  More exhaustive testing will be done by hand.
+rm -f *.o hencode hdecode
+echo "Compiling..."
+Compiling...
+make
+make[1]: Entering directory `/tmp/easiruwa-sandbox'
+g++    -c -o hencode.o hencode.cc
+g++ -o hencode hencode.o 
+g++    -c -o hdecode.o hdecode.cc
+g++ -o hdecode hdecode.o 
+make[1]: Leaving directory `/tmp/easiruwa-sandbox'
+echo "Running first test"
+Running first test
+cp src1.txt orig1.txt
+./hencode src1.txt > /dev/null
+echo "Ensure src1.txt has 0 length: "
+Ensure src1.txt has 0 length: 
+echo "Ensure orig1.txt is longer than src1.txt.huf"
+Ensure orig1.txt is longer than src1.txt.huf
+touch src1.txt	
+ls -l src1.txt orig1.txt src1.txt.huf 
+-rw-r--r-- 1 easiruwa easiruwa 2903 May  7 18:43 orig1.txt
+-rw-rw-r-- 1 easiruwa easiruwa    0 May  7 18:43 src1.txt
+-rw-rw-r-- 1 easiruwa easiruwa 1790 May  7 18:43 src1.txt.huf
+rm -f src1.txt
+./hdecode src1.txt.huf > /dev/null
+diff src1.txt orig1.txt
+echo "Running second test"
+Running second test
+cp hencode.cc ONE
+cp hencode.cc ORIG
+echo "Running first hencode..."
+Running first hencode...
+./hencode ONE
+cp ONE.huf one.huf 
+echo "Running second hencode..."
+Running second hencode...
+./hencode ONE.huf
+ls -l ORIG *.huf
+-rw-rw-r-- 1 easiruwa easiruwa 2980 May  7 18:43 one.huf
+-rw-rw-r-- 1 easiruwa easiruwa 3653 May  7 18:43 ONE.huf.huf
+-rw-rw---- 1 easiruwa easiruwa 4595 May  7 18:43 ORIG
+rm -f ONE
+echo "Running first hdecode..."
+Running first hdecode...
+./hdecode ONE.huf.huf > /dev/null
+echo "Running second hdecode..."
+Running second hdecode...
+./hdecode ONE.huf	> /dev/null
+diff ONE hencode.cc
+echo "Testing complete."
+Testing complete.
+Evaluation complete.
